@@ -183,8 +183,8 @@ WITH skills_demand AS
 (
     SELECT 
         skills_dim.skill_id,
-        LOWER(skills_dim.skills) AS skills,  -- Standardize to lowercase
-        COUNT(DISTINCT skills_job_dim.job_id) AS demand_count  -- Ensure unique job postings
+        LOWER(skills_dim.skills) AS skills, 
+        COUNT(DISTINCT skills_job_dim.job_id) AS demand_count  
     FROM job_postings_fact
     INNER JOIN skills_job_dim ON job_postings_fact.job_id = skills_job_dim.job_id
     INNER JOIN skills_dim ON skills_dim.skill_id = skills_job_dim.skill_id
@@ -192,14 +192,14 @@ WITH skills_demand AS
         job_title_short = 'Data Analyst' 
         AND salary_year_avg IS NOT NULL 
         AND job_work_from_home = TRUE
-    GROUP BY skills_dim.skill_id, LOWER(skills_dim.skills)  -- Grouping by standardized skill name
+    GROUP BY skills_dim.skill_id, LOWER(skills_dim.skills)  
 ),
 
 average_salary AS
 (
     SELECT 
         skills_job_dim.skill_id,
-        LOWER(skills_dim.skills) AS skills, -- Standardize to lowercase
+        LOWER(skills_dim.skills) AS skills, 
         ROUND(AVG(salary_year_avg), 0) AS avg_salary
     FROM job_postings_fact
     INNER JOIN skills_job_dim ON job_postings_fact.job_id = skills_job_dim.job_id
@@ -212,13 +212,13 @@ average_salary AS
 )
 
 SELECT 
-    MIN(skills_demand.skill_id) AS skill_id,  -- Use MIN to avoid duplicate skill IDs
+    MIN(skills_demand.skill_id) AS skill_id,  
     skills_demand.skills,
-    SUM(skills_demand.demand_count) AS demand_count,  -- Aggregate duplicate counts
-    AVG(average_salary.avg_salary) AS avg_salary  -- Average salary if duplicated
+    SUM(skills_demand.demand_count) AS demand_count,  
+    AVG(average_salary.avg_salary) AS avg_salary  
 FROM skills_demand
 INNER JOIN average_salary 
-    ON skills_demand.skills = average_salary.skills  -- Join by skill name instead of ID
+    ON skills_demand.skills = average_salary.skills  
 GROUP BY skills_demand.skills
 HAVING SUM(skills_demand.demand_count) > 10
 ORDER BY demand_count DESC
