@@ -264,3 +264,14 @@ Wordprocessing skills are fundamental in most office environments. While not a h
 ### Conclusion
 
 The skills listed are all valuable to learn, each offering unique benefits in terms of career opportunities, earning potential, and personal development. The specific choice of which skill to focus on depends on your career interests, aptitude, and goals. However, investing time and effort in developing proficiency in any of these areas is likely to yield a positive return in the long run.
+
+## Project insights
+
+This project analyzed job market data using SQL and PostgreSQL to identify high-paying data analyst roles, in-demand skills, and the correlation between skills and salary.  The analysis focused on remote data analyst positions and employed SQL queries to extract relevant data, which was then visualized using Python and Matplotlib in Jupyter Notebook.
+
+Key findings include:
+
+- High Salaries: Remote data analyst positions offer competitive salaries, ranging from $184,000 to $650,000.
+- In-Demand Skills: SQL, Excel, and Python are the most in-demand tools for data analysts, essential for data collection, preprocessing, and exploration. Tableau and Power BI are crucial for data visualization and storytelling.
+- High-Value Skills: PySpark, Bitbucket, Couchbase, Watson, DataRobot, GitLab, Jupyter, Swift, Pandas, and Elasticsearch are associated with higher average salaries, indicating the value of expertise in big data processing, DevOps, AI/ML, and data manipulation.
+- Optimal Skills to Learn: A combination of high demand and high average salary makes SQL, Excel, Python, Tableau, R, Power BI, SAS, Looker, and related tools optimal skills for aspiring data analysts. While some skills like Word and PowerPoint are frequently mentioned, they command lower average salaries.
